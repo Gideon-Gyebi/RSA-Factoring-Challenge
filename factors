@@ -1,0 +1,35 @@
+def factor(n):
+  """Factors a natural number into a product of two smaller numbers.
+
+  Args:
+    n: The natural number to factor.
+
+  Returns:
+    A list of two numbers, such that n = p * q, where p and q are smaller than n.
+
+  Raises:
+    ValueError: If n is not a natural number greater than 1.
+  """
+
+  if n <= 1:
+    raise ValueError("n must be a natural number greater than 1")
+
+  for i in range(2, int(n**0.5) + 1):
+    if n % i == 0:
+      return [i, n // i]
+
+  return [n]
+
+
+def main():
+  """Reads a file containing natural numbers and factors them."""
+
+  with open(sys.argv[1]) as f:
+    for line in f:
+      n = int(line)
+      factors = factor(n)
+      print(f"{n}={factors[0]}*{factors[1]}")
+
+
+if __name__ == "__main__":
+  main()
