@@ -38,29 +38,30 @@ def main():
     try:
         """ Opening the file in read mode """
         with open(file_path, 'r') as file:
-	""" Reading all lines of the file into a list """
+            """ Reading all lines of the file into a list """
             numbers = file.readlines()
-        """ Iterating through each number in the list """
+            """ Iterating through each number in the list """
         for number in numbers:
-	""" Converting the string number to an integer """
+            """ Converting the string number to an integer """
             num = int(number.strip())
-	""" Factorize the number using Pollard's rho algorithm """
+            """ Factorize the number using Pollard's rho algorithm """
             factor = pollard_rho(num)
             """ If the factor is equal to the original number """
             if factor == num:
                 """ Print that the number is prime """
                 print(f"{num} is prime.")
             else:
-	    """ Printing the factors of the number """
+                """ Printing the factors of the number """
                 print(f"{num}={factor}*{num // factor}")
 
             if time.time() - start_time > 5:
                 print("Time limit exceeded !!!")
                 exit()
 
-    """ Print an error message if the file is not found """
+                """ Print an error message if the file is not found """
     except FileNotFoundError:
         print(f"File '{file_path}' not found.")
 
 if __name__ == '__main__':
-    main()  """ Calls the main function when the script is executed """
+    main()
+    """ Calls the main function when the script is executed """
